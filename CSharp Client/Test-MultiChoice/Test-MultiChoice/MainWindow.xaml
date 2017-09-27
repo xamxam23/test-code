@@ -1,0 +1,49 @@
+﻿<Window x:Class="Test_MultiChoice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="700" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="583*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Row="0" BorderBrush="SkyBlue" BorderThickness="1,1,3,3" 
+                 CornerRadius="4,4,4,4" Margin="4,4,3.6,4.4" Padding="4,4,4,4" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <Button Name="ButtonGraph" Content="Graph: Animals Count"  FontSize="10" Click="ButtonClick_Graph" VerticalAlignment="Top" Margin="4,4,22,4"/>
+                    <Label Visibility="Collapsed" Name="LabelGraph"  Content="Creating graph..." HorizontalAlignment="Center" />
+                    <Button Content="Graph: Animals Count Over Time"  FontSize="10" Click="ButtonClick_Graph_Timed" VerticalAlignment="Top" Margin="4,4,22,4"/>
+                    <Button Content="Update Animals"  FontSize="10" Click="ButtonClick_UpdateAnimals" VerticalAlignment="Top" Margin="4,4,22,4"/>
+                    <Button Content="Create Animals"  Click="ButtonClick_CreateAnimals" VerticalAlignment="Top" Margin="4,4,22,4"/>
+                </StackPanel>
+                <ScrollViewer Margin="4,4,4,4" Grid.Row="1" >
+                    <ListView Name="ListView_AnimalCounts" >
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="Background" Value="AliceBlue" />
+                            </Style>
+                        </ListView.Resources>
+
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name"  Width="150" DisplayMemberBinding="{Binding Name}"  />
+                                <GridViewColumn Header="Count"  Width="50" DisplayMemberBinding="{Binding Count}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <WebBrowser x:Name="Browser" Grid.Column="1" Margin="1.4,-4,-1.4,4.4" Grid.RowSpan="2" />
+    </Grid>
+</Window>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <script src = "http://maps.googleapis.com/maps/api/js"></script>
+      
+      <script>
+		    var marker = null, map =null, mapOptions = null;
+		    var image = 'img/car.png';
+		    function putMarker(map, latlng){
+			    marker = new google.maps.Marker({
+			    animation: google.maps.Animation.DROP,
+			      position: latlng,
+			      map: map,
+			      icon: image, 
+			      title: 'Hello World!'
+			    });
+		    }
+
+		 function test(){li
+			 var p = {lat: -20, lng: 25};
+			 var m = new google.maps.Marker({
+			  position: p,
+			  map: map,
+			  
+			  title: 'Hello World!'
+			});
+			//marker.position =  {lat: -30, lng: 30};
+			marker.setPosition( new google.maps.LatLng( -26+getSign()*getRandTiny(), 28+getSign()*getRandTiny() ) );
+			//alert(marker.position);
+			setTimeout(test, 1000);
+		 }
+		 function getRand(){
+			 return Math.floor((Math.random() * 100) + 1);
+		 }
+		 
+		function getRandTiny(){
+			 return Math.random() / 10.0;
+		 }
+		 
+		 function getSign(){
+			 return Math.random()>0.5?1:-1;
+		 }
+         function loadMap() {
+			
+            mapOptions = {
+               center:new google.maps.LatLng(-26, 28), zoom:10,
+               mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+				
+            map = new google.maps.Map(document.getElementById("sample"),mapOptions);
+			var latlng =  {lat: -26, lng: 28};
+			putMarker(map, latlng);
+         }
+		 
+		 setTimeout(test, 1000);
+		 
+      </script>
+      
+   </head>
+   
+   <body onload = "loadMap()">
+      <div id = "sample" style = "margin:15px;width:1600px; height:800px;"></div>
+	  <div id = "status" style = "margin:15px;width:1600px; height:30px; background-color: skyblue; text-align: center; vertical-align: center">
+		status
+	  </div>
+	  <button onclick="test()">click</button>
+   </body>
+   
+</html>
